@@ -4,9 +4,19 @@ int main(){
 
     int N, X;
 
-    printf("Cadastre uma senha de 4 digitos:\n");
-    scanf("%d", &N);
+    do{
+        printf("Cadastre uma senha de 4 digitos:\n");
+        scanf("%d", &N);
+
+        if(N > 9999 || N < 1000){
+        printf("senha invalida!\n");
+        }
+
+    }while(N > 9999 || N < 1000);
+
+    if(N <= 9999 || N >= 1000){
     printf("senha cadastrada: %d\n", N);
+    }
 
     //printf("Digite a senha cadastrada anteriormente:\n")
     scanf("%d", &X);
@@ -22,4 +32,3 @@ int main(){
 
     return 0;
 }
-
