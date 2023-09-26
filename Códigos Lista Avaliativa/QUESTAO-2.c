@@ -22,7 +22,7 @@ int main(){
         N2 = N2 / 10;
     }
 
-    printf("A soma dos algarismos de %d eh igual a %d\n", N1, S);
+    printf("A soma dos algarismos de %d eh %d\n", N1, S);
 
     return 0;
 }
