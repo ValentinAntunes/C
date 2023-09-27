@@ -4,7 +4,6 @@ int main(){
 
     int X;
 
-    printf("Digite um ano igual ou entre 1800 e 2022:\n");
     scanf("%d", &X);
 
     if(X > 2022){
@@ -23,7 +22,7 @@ int main(){
         printf("Nao houve Jogos Olimpicos de Verao ou Copa do Mundo no ano de %d.\n", X);
     }
 
-    /** Nos anos de 1916, 1940, 1942, 1944 e 1946 n„o houveram Olimpiadas nem Copa do Mundo devido ‡s Guerras.**/
+    /** Nos anos de 1916, 1940, 1942, 1944 e 1946 n√£o houveram Olimpiadas nem Copa do Mundo devido √†s Guerras.**/
 
     return 0;
 }
