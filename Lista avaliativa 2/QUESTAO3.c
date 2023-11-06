@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 void somarMatrizes(int A[4][4], int B[4][4], int resultado[4][4]) {
     for (int i = 0; i < 4; i++) {
