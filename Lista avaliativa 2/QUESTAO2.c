@@ -63,7 +63,7 @@ int main() {
     double forcaPonderadaTime1 = calcularForcaPonderada(nomeTime1, forcasTime1);
     double forcaPonderadaTime2 = calcularForcaPonderada(nomeTime2, forcasTime2);
 
-    printf("\n%s: %.2lf de forca\n", nomeTime1, forcaPonderadaTime1);
+    printf("%s: %.2lf de forca\n", nomeTime1, forcaPonderadaTime1);
     printf("%s: %.2lf de forca\n", nomeTime2, forcaPonderadaTime2);
 
     if (forcaPonderadaTime1 > forcaPonderadaTime2) {
