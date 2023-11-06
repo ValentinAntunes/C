@@ -1,75 +1,75 @@
 #include <stdio.h>
 #include <string.h>
 
-double calcularForcaPonderada(char nomeTime[50], double forcas[11]) {
-    double forcaTime = 0;
+double FP(char NT[50], double F[11]) {//força ponderada, nome time, forças
+    double FT = 0;//força time
 
 
-    double G = forcas[0];
+    double G = F[0];
 
-    double L1 = forcas[1];
-    double L2 = forcas[4];
+    double L1 = F[1];//lateral 1
+    double L2 = F[4];//lateral em 4°
 
-    double Z1 = forcas[2];
-    double Z2 = forcas[3];
+    double Z1 = F[2];//zagueiro em 2°
+    double Z2 = F[3];//zagueiro 3
 
-    double V1 = forcas[5];
-    double V2 = forcas[6];
+    double V1 = F[5];
+    double V2 = F[6];
 
-    double M1 = forcas[7];
-    double M2 = forcas[8];
+    double M1 = F[7];
+    double M2 = F[8];
 
-    double A1 = forcas[9];
-    double A2 = forcas[10];
+    double A1 = F[9];
+    double A2 = F[10];
 
-    forcaTime = (8 * G + 10 * (L1 + L2) + 5 * (Z1 + Z2) + 8 * (V1 + V2) + 11 * (M1 + M2) + 12 * (A1 + A2)) / 100;
+    FT = (8 * G + 10 * (L1 + L2) + 5 * (Z1 + Z2) + 8 * (V1 + V2) + 11 * (M1 + M2) + 12 * (A1 + A2)) / 100;
 
-    return forcaTime;
+    return FT;
 }
 
 int main() {
-    char nomeTime1[50], nomeTime2[50];
-    double forcasTime1[11] = {0};
-    double forcasTime2[11] = {0};
-    int jogadorIndex = 0;
-    char linha[100];
+    char NT1[50], NT2[50];
+    double FT1[11] = {0};//força time 1
+    double FT2[11] = {0};//força time 2
+    int TOTALJ = 0;//total de jogadores
+    char LINHA[100];//total de 24 linhas, (1 time + 11 jogadores) * 2;
 
-    while (jogadorIndex < 24) {
-        fgets(linha, sizeof(linha), stdin);
-        linha[strcspn(linha, "\n")] = '\0';
-        if (linha[0] == '\0') {
+    while (TOTALJ < 24) {//quando atingir 24 linhas, o código é compilado;
+        fgets(LINHA, sizeof(LINHA), stdin);
+        LINHA[strcspn(LINHA, "\n")] = '\0';
+        if (LINHA[0] == '\0') {
             break;
         }
 
-        if (jogadorIndex == 0) {
-            strcpy(nomeTime1, linha);
-        } else if (jogadorIndex == 12) {
-            strcpy(nomeTime2, linha);
+        if (TOTALJ == 0) {
+            strcpy(NT1, LINHA);
+        } else if (TOTALJ == 12) {
+            strcpy(NT2, LINHA);
         } else {
-            char nome[50], posicao;
-            double forca;
-            sscanf(linha, "%[^;];%c;%lf", nome, &posicao, &forca);
+            char NOME[50], POSITION;
+            double FORCA;
+            sscanf(LINHA, "%[^;];%c;%lf", NOME, &POSITION, &FORCA);
 
-            if (jogadorIndex <= 11) {
-                forcasTime1[jogadorIndex - 1] = forca;
+            if (TOTALJ <= 11) {
+                FT1[TOTALJ - 1] = FORCA;
             } else {
-                forcasTime2[jogadorIndex - 12 - 1] = forca;
+                FT2[TOTALJ - 12 - 1] = FORCA;
             }
         }
 
-        jogadorIndex++;
+        TOTALJ++;
     }
 
-    double forcaPonderadaTime1 = calcularForcaPonderada(nomeTime1, forcasTime1);
-    double forcaPonderadaTime2 = calcularForcaPonderada(nomeTime2, forcasTime2);
+    double FPT1 = FP(NT1, FT1);//força ponderada T1
+    double FPT2 = FP(NT2, FT2);//força ponderada T2
 
-    printf("%s: %.2lf de forca\n", nomeTime1, forcaPonderadaTime1);
-    printf("%s: %.2lf de forca\n", nomeTime2, forcaPonderadaTime2);
+    printf("%s: %.2lf de forca\n", NT1, FPT1);
+    printf("%s: %.2lf de forca\n", NT2, FPT2);
 
-    if (forcaPonderadaTime1 > forcaPonderadaTime2) {
-        printf("%s eh mais forte\n", nomeTime1);
-    } else if (forcaPonderadaTime2 > forcaPonderadaTime1) {
-        printf("%s eh mais forte\n", nomeTime2);
+    if (FPT1 > FPT2) {
+        printf("%s eh mais forte\n", NT1);
+    } else if (FPT2 > FPT1) {
+        printf("%s eh mais forte\n", NT2);
     }
 
     return 0;
