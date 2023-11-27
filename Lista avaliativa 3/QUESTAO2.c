@@ -2,21 +2,19 @@
 #include <math.h>
 
 int main() {
-    int meses;
-    double aporteMensal, taxaJuros, montante;
+    int MESES;
+    double APORTE, txJUROS, MONTANTE;
 
-    scanf("%d", &meses);
+    scanf("%d", &MESES);
 
-    scanf("%lf", &aporteMensal);
+    scanf("%lf", &APORTE);
 
-    scanf("%lf", &taxaJuros);
+    scanf("%lf", &txJUROS);
 
-    // Cálculo do montante ao fim de cada mês
-    for (int i = 1; i <= meses; i++) {
-        montante = aporteMensal * (1 + taxaJuros) * ((pow(1 + taxaJuros, i) - 1) / taxaJuros);
+    for (int i = 1; i <= MESES; i++) {
+        MONTANTE = APORTE * (1 + txJUROS) * ((pow(1 + txJUROS, i) - 1) / txJUROS);
 
-        // Saída de dados
-        printf("Montante ao fim do mes %d: R$ %.2lf\n", i, montante);
+        printf("Montante ao fim do mes %d: R$ %.2lf\n", i, MONTANTE);
     }
 
     return 0;
