@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Função para converter um caractere romano em valor decimal
-int valorRomano(char c) {
+int VR(char c) {
     switch (c) {
         case 'I':
             return 1;
@@ -19,78 +18,69 @@ int valorRomano(char c) {
         case 'M':
             return 1000;
         default:
-            return 0; // Caractere inválido
+            return 0;
     }
 }
 
-// Função para converter um número romano em decimal
-int romanoParaDecimal(char *romano) {
-    int resultado = 0;
+int RpD(char *romano) { //romano para decimal
+    int RESULT = 0;
     int i;
 
     for (i = 0; i < strlen(romano); i++) {
-        int valorAtual = valorRomano(romano[i]);
-        int valorProximo = (i + 1 < strlen(romano)) ? valorRomano(romano[i + 1]) : 0;
+        int vATUAL = VR(romano[i]);
+        int vPROX = (i + 1 < strlen(romano)) ? VR(romano[i + 1]) : 0;
 
-        if (valorAtual < valorProximo) {
-            resultado += valorProximo - valorAtual;
-            i++; // Avança dois caracteres
+        if (vATUAL < vPROX) {
+            RESULT += vPROX - vATUAL;
+            i++;
         } else {
-            resultado += valorAtual;
+            RESULT += vATUAL;
         }
     }
 
-    return resultado;
+    return RESULT;
 }
 
-// Função para converter um número decimal em binário
-void decimalParaBinario(int decimal, char *binario) {
+void DpB(int decimal, char *binario) { //decimal para binÃ¡rio
     if (decimal == 0) {
         binario[0] = '0';
         binario[1] = '\0';
         return;
     }
 
-    int indice = 0;
+    int INDEX = 0;
     while (decimal > 0) {
-        binario[indice++] = (decimal % 2) + '0';
+        binario[INDEX++] = (decimal % 2) + '0';
         decimal /= 2;
     }
 
-    binario[indice] = '\0';
+    binario[INDEX] = '\0';
 
-    // Inverte a string binária
     int inicio = 0;
-    int fim = indice - 1;
-    while (inicio < fim) {
+    int END = INDEX - 1;
+    while (inicio < END) {
         char temp = binario[inicio];
-        binario[inicio] = binario[fim];
-        binario[fim] = temp;
+        binario[inicio] = binario[END];
+        binario[END] = temp;
         inicio++;
-        fim--;
+        END--;
     }
 }
 
 int main() {
     char romano[13];
-    char binario[32]; // Armazenará a representação binária
+    char binario[32];
 
-    // Recebe o número romano
     scanf("%s", romano);
 
-    // Converte para decimal
-    int decimal = romanoParaDecimal(romano);
+    int decimal = RpD(romano);
 
-    // Converte decimal para binário
-    decimalParaBinario(decimal, binario);
+    DpB(decimal, binario);
 
-    // Imprime a representação binária
     printf("%s na base 2: %s\n", romano, binario);
 
-    // Imprime a representação decimal
     printf("%s na base 10: %d\n", romano, decimal);
 
-    // Imprime a representação hexadecimal
     printf("%s na base 16: %x\n", romano, decimal);
 
     return 0;
